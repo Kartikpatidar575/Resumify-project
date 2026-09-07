@@ -1,0 +1,47 @@
+.otp-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.otp-input {
+  width: 48px;
+  height: 52px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.otp-input:focus {
+  border-color: #6366f1;
+}
+
+.resend-container {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.resend-btn {
+  margin-left: 6px;
+  border: none;
+  background: transparent;
+  color: #111827;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.resend-btn:hover {
+  text-decoration: underline;
+}
+
+.resend-timer {
+  display: block;
+  margin-top: 8px;
+  color: #6b7280;
+}

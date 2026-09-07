@@ -1,0 +1,10 @@
+.resume-scale-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.resume-scale-inner {
+  width: 794px; /* fixed true page width, matches .preview-page */
+  transform-origin: top left;
+}

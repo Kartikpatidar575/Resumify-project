@@ -1,0 +1,403 @@
+/* DashboardNavbar Css */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  background: transparent;
+  color: #dc2626;
+  padding: 9px 16px;
+  border: none;
+  cursor: pointer;
+  gap: 15px;
+}
+
+.logout-btn:hover {
+  background: #fee2e2;
+}
+
+/* Aside CSS */
+.asideContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 250px;
+  height: 100vh;
+  background: #ffffff;
+  padding: 10px 15px 30px 15px;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard-logo {
+  border-bottom: 2px solid black;
+  margin-bottom: 15px;
+}
+.dashboard-ul-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-ul-list li {
+  width: 100%;
+}
+
+/* NavLink */
+.dashboard-ul-list li a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 12px 15px;
+  border-radius: 10px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: 0.3s;
+  color: #374151;
+}
+
+/* Hover */
+.dashboard-ul-list li a:hover {
+  background-color: rgba(57, 55, 55, 0.26);
+}
+
+/* Text */
+.dashboard-ul-list li span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Icon */
+.aside-icon {
+  font-size: 22px;
+  color: rgb(23, 110, 253);
+}
+
+/* Active NavLink */
+.dashboard-ul-list li a.active {
+  background-color: rgb(23, 110, 253);
+}
+
+.dashboard-ul-list li a.active span {
+  color: white;
+}
+
+.dashboard-ul-list li a.active .aside-icon {
+  color: white;
+}
+
+/* Logout */
+.logout {
+  margin-top: auto;
+}
+
+.menu-logout-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 7px;
+  transition: 0.2s ease;
+}
+
+.menu-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+.logout span,
+.logout .aside-icon {
+  color: #dc2626;
+}
+
+/* Main content */
+.main {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+}
+.premium-card {
+  margin-top: auto;
+  background: #f8f9fc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.premium-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.premium-icon::before {
+  width: 30px;
+  height: 30px;
+  background: #eef2ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.premium-card p {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.premium-btn {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: rgb(23, 110, 253);
+  color: #fff;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.premium-btn:hover {
+  background: rgb(23, 110, 253);
+}
+
+.premium-card {
+  display: "block";
+}
+
+.upgrade-cta {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 14px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background: #2563eb;
+}
+
+.upgrade-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.upgrade-button {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  color: #374151;
+  cursor: pointer;
+}
+.top-aside-container {
+  display: flex;
+  flex-direction: column;
+}
+.bottom-aside-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  jusitfy-content: center;
+  gap: 10px;
+}
+.resume-heading-span {
+  color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .asideContainer {
+    flex-direction: row;
+    height: 80px;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #cec3c3;
+  }
+  .dashboard-ul-list {
+    display: none;
+  }
+  .dashboard-logo {
+    border: none;
+  }
+  .top-aside-container {
+    display: flex;
+    flex-direction: row;
+  }
+  .bottom-aside-container {
+    flex-direction: row;
+  }
+  .main {
+    margin: 80px 0px 0px 0px;
+    width: 100%;
+  }
+  .logout-btn {
+    display: none;
+  }
+  .premium-card {
+    display: none;
+  }
+  .upgrade-cta {
+    display: flex;
+  }
+  .menu-button {
+    display: flex;
+  }
+}
+
+@media (max-width: 425px) {
+  .upgrade-cta {
+    display: none;
+  }
+}
+
+.overlayMenu {
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(72, 71, 71, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.menuBox {
+  position: relative;
+
+  width: 280px;
+  max-width: calc(100% - 30px);
+
+  background-color: #fff;
+  border-radius: 12px;
+
+  padding: 45px 20px 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn-div {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close-btn-div:hover {
+  background-color: #e5e6e7;
+}
+
+.close-btn {
+  color: #333;
+}
+
+/* Menu list */
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li {
+  margin-bottom: 5px;
+}
+
+.menu-list li:last-child {
+  margin-bottom: 0;
+}
+
+.menu-list a {
+  display: block;
+
+  padding: 12px 10px;
+
+  color: #333;
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  border-radius: 7px;
+
+  transition: 0.2s ease;
+}
+
+.menu-list a:hover {
+  background-color: #f3f4f6;
+  color: #2563eb;
+}
+.hidden {
+  display: none;
+}
+.menuBox li a {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.menuBox li a.active {
+  background-color: rgb(23, 110, 253);
+}
+
+.menuBox li a.active span {
+  color: white;
+}
+
+.menuBox li a.active .aside-icon {
+  color: white;
+}

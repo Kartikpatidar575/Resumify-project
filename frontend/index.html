@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resumify - Resume Builder</title>
+  <style>
+    .app-loader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      z-index: 9999;
+    }
+
+    .loader-progress {
+      width: 180px;
+      height: 4px;
+      background: rgba(23, 110, 253, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .loader-progress span {
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: rgb(23, 110, 253);
+      border-radius: 10px;
+
+      animation: moveLine 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes moveLine {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(250%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div class="app-loader">
+      <div class="loader-progress">
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

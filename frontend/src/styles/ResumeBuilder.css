@@ -1,0 +1,1004 @@
+.preview-btn-container {
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0 8px 0;
+  background:#f5f6f8;
+}
+
+
+.preview-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width : 300px;
+  background:#2563eb;
+
+  padding: 9px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+
+}
+.preview-btn:hover {
+  transform: scale(1.03);
+}
+
+/* =========================================================
+   RESUME NAV
+========================================================= */
+
+.resume-nav {
+  display: inline-block;
+  padding: 5px;
+
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.resume-nav ul {
+  display: flex;
+  align-items: center;
+  justify-content : center;
+  gap: 4px;
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-nav li {
+  padding: 7px 18px;
+
+  border-radius: 7px;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+
+  transition: all 0.2s ease;
+}
+
+.resume-nav li:hover {
+  color: #176efd;
+}
+
+.resume-nav li.active {
+  background: #ffffff;
+  color: #176efd;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   EDITOR TOPBAR
+========================================================= */
+
+.editor-topbar {
+  width: 100%;
+  height: 87px;
+
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  box-sizing: border-box;
+}
+
+.resume-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.resume-title input {
+  width: 180px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.resume-title input::placeholder {
+  color: #9ca3af;
+}
+
+.resume-title input:focus {
+  border-bottom: 1px solid #176efd;
+}
+
+
+/* =========================================================
+   FILE ICON
+========================================================= */
+
+.text-file-wrapper {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  cursor: pointer;
+}
+
+.saved-tooltip {
+  position: absolute;
+
+  top: 28px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 4px 7px;
+
+  background: #111827;
+  color: #ffffff;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+  white-space: nowrap;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.2s ease;
+
+  z-index: 50;
+}
+
+.text-file-wrapper:hover .saved-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* =========================================================
+   TOPBAR ACTIONS
+========================================================= */
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.download-btn {
+  min-height: 40px;
+
+  padding: 8px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #176efd;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background: #f8fafc;
+  border-color: #176efd;
+}
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+.account-wrapper {
+  position: relative;
+}
+
+.account-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.account-avatar{
+    background : black;
+  padding:5px 12px;
+  border-radius:24px;
+  color:white;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 325px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+}
+
+.account-name,
+.account-email {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.account-name svg,
+.account-email svg {
+  color: #2563eb;
+  font-size: 17px;
+}
+
+.account-name span,
+.account-email span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.account-name strong,
+.account-email strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MAIN EDITOR - DESKTOP DEFAULT
+========================================================= */
+
+.form_preview_container {
+  width: 100%;
+  height: calc(100vh - 87px);
+
+  display: flex;
+  gap: 4px;
+
+  padding: 4px;
+
+  background: #f5f6f8;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   FORM SECTION
+========================================================= */
+
+
+.formsection {
+  width: 45%;
+  height: 100%;
+
+  min-width: 0;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+}
+
+.formsection::-webkit-scrollbar {
+  width: 6px;
+}
+
+.formsection::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.formsection::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   ACCORDION
+========================================================= */
+
+.accordion-card {
+  margin-bottom: 10px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.accordion-btn {
+  width: 100%;
+
+  padding: 17px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: none;
+  background: #ffffff;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+.accordion-btn:hover {
+  background: #f8fafc;
+}
+
+.accordion-btn:focus {
+  outline: none;
+}
+
+.accordion-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.accordion-icon {
+  font-size: 25px;
+  color: #374151;
+
+  transition: transform 0.3s ease;
+}
+
+.accordion-body {
+  display: none;
+}
+
+.active-accordion-body {
+  display: block;
+}
+
+.accordion-body,
+.active-accordion-body {
+  padding: 20px;
+
+  border-top: 1px solid #f1f5f9;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PREVIEW SECTION
+========================================================= */
+
+.previewsection {
+  width: 55%;
+  height: 100%;
+
+  min-width: 0;
+
+  padding: 15px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+.preview-section-top {
+  flex-shrink: 0;
+
+  margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   PREVIEW CONTAINER
+========================================================= */
+
+.preview-container {
+  width: 100%;
+  height: 100%;
+
+  flex: 1;
+  min-height: 0;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: flex-start;
+
+  overflow: auto;
+
+  background: #f1f3f6;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+} 
+/* =========================================================
+   A4 RESUME
+   NEVER MAKE THIS RESPONSIVE
+========================================================= */
+.preview-page {
+  width: 210mm;
+  min-width: 210mm;
+
+  min-height: 297mm;
+
+  flex: 0 0 auto;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.12);
+} 
+
+
+/* =========================================================
+   PDF PAGE BREAK
+========================================================= */
+
+.t2-section,
+.t2-item {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.t2-heading {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+
+/* =========================================================
+   MOBILE
+   320px - 767px
+========================================================= */
+
+@media (max-width: 767px) {
+
+  /* -------------------------------------------------------
+     TOPBAR
+  ------------------------------------------------------- */
+
+    .formsection.hide-on-preview {
+    display: none;
+  }
+
+  .previewsection.hide-on-form {
+    display: none;
+  }
+
+    .preview-btn-container {
+  display : flex;
+}
+
+  .editor-topbar {
+    height: auto;
+    min-height: 64px;
+
+    padding: 10px 12px;
+
+    gap: 10px;
+  }
+
+  .resume-title {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .resume-title input {
+    width: 100%;
+    max-width: 150px;
+
+    font-size: 15px;
+  }
+
+  .topbar-actions {
+    flex-shrink: 0;
+    gap: 0;
+  }
+
+  .download-btn {
+    min-height: 36px;
+
+    padding: 7px 10px;
+
+    font-size: 12px;
+  }
+
+  .download-btn svg {
+    width: 15px;
+  }
+
+  .account-section {
+    display: none;
+  }
+
+
+  /* -------------------------------------------------------
+     MAIN
+     IMPORTANT: AUTO HEIGHT
+  ------------------------------------------------------- */
+
+  .form_preview_container {
+    width: 100%;
+
+    height: auto;
+    min-height: calc(100vh - 64px);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding: 8px;
+
+    overflow: visible;
+  }
+
+
+  /* -------------------------------------------------------
+     FORM
+  ------------------------------------------------------- */
+
+  .formsection {
+    width: 100%;
+    height: auto;
+
+    flex: none;
+
+    padding: 10px;
+
+    border-radius: 12px;
+
+    overflow: visible;
+  }
+
+
+  /* -------------------------------------------------------
+     NAV
+  ------------------------------------------------------- */
+
+  .formsection > .py-4 {
+    padding-top: 8px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .resume-nav {
+    display: flex;
+    width: fit-content;
+
+    margin: 0 auto;
+  }
+
+  .resume-nav ul {
+    gap: 3px;
+  }
+
+  .resume-nav li {
+    padding: 7px 16px;
+
+    font-size: 12px;
+  }
+
+
+  /* -------------------------------------------------------
+     ACCORDION
+  ------------------------------------------------------- */
+
+  .accordion-title {
+    font-size: 14px;
+  }
+
+  .accordion-icon {
+    font-size: 22px;
+  }
+
+  .accordion-btn {
+    padding: 14px;
+  }
+
+  .accordion-body,
+  .active-accordion-body {
+    padding: 14px;
+  }
+
+
+  /* -------------------------------------------------------
+     PREVIEW SECTION
+     AUTOMATIC HEIGHT
+  ------------------------------------------------------- */
+
+  .previewsection {
+    width: 100%;
+    height: auto;
+
+    flex: none;
+
+    padding: 8px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+  }
+
+  .preview-section-top {
+    margin-bottom: 8px;
+    padding: 4px 2px;
+  }
+
+
+  /* -------------------------------------------------------
+     PREVIEW CONTAINER
+  ------------------------------------------------------- */
+
+  .preview-container {
+    width: 100%;
+    height: auto;
+
+    flex: none;
+
+    min-height: 0;
+
+    padding: 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    box-sizing: border-box;
+  }
+
+
+  /* -------------------------------------------------------
+     REAL A4
+  ------------------------------------------------------- */
+
+  .preview-page {
+    width: 210mm;
+    min-width: 210mm;
+
+    min-height: 297mm;
+
+    flex: 0 0 auto;
+  }
+  
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   <= 374px
+========================================================= */
+
+@media (max-width: 374px) {
+   .formsection.hide-on-preview {
+    display: none;
+  }
+
+  .previewsection.hide-on-form {
+    display: none;
+  }
+    .preview-btn-container {
+  display : flex;
+}
+  .editor-topbar {
+    padding: 9px 10px;
+  }
+
+  .resume-title input {
+    max-width: 130px;
+    font-size: 14px;
+  }
+
+  .download-btn {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+
+  .resume-nav li {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .form_preview_container {
+    padding: 7px;
+  }
+
+  .previewsection {
+    padding: 7px;
+  }
+
+  .preview-container {
+    padding: 8px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   768px - 1023px
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* -------------------------------------------------------
+     TOPBAR
+  ------------------------------------------------------- */
+   .formsection.hide-on-preview {
+    display: none;
+  }
+
+  .previewsection.hide-on-form {
+    display: none;
+  }
+   .preview-btn-container {
+  display : flex;
+}
+  .editor-topbar {
+    height: 70px;
+
+    padding: 0 15px;
+  }
+
+  .account-section {
+    /* display: none; */
+  }
+
+
+  /* -------------------------------------------------------
+     MAIN
+     IMPORTANT: AUTO HEIGHT
+  ------------------------------------------------------- */
+
+  .form_preview_container {
+    width: 100%;
+
+    height: auto;
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    overflow: visible;
+  }
+
+
+  /* -------------------------------------------------------
+     FORM
+  ------------------------------------------------------- */
+
+  .formsection {
+    width: 100%;
+    height: auto;
+
+    flex: none;
+
+    padding: 15px;
+
+    overflow: visible;
+
+    border-radius: 13px;
+  }
+
+
+  /* -------------------------------------------------------
+     PREVIEW SECTION
+     IMPORTANT: NO height: 100%
+  ------------------------------------------------------- */
+
+  .previewsection {
+    width: 100%;
+    height: auto;
+
+    flex: none;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+  }
+
+  .preview-section-top {
+    margin-bottom: 12px;
+  }
+
+
+  /* -------------------------------------------------------
+     PREVIEW CONTAINER
+  ------------------------------------------------------- */
+
+  .preview-container {
+    width: 100%;
+    height: auto;
+
+    flex: none;
+
+    min-height: 0;
+
+    padding: 10px;
+
+    display: flex;
+    /* justify-content: center; */
+    align-items: flex-start;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    box-sizing: border-box;
+  }
+
+
+  /* -------------------------------------------------------
+     A4
+  ------------------------------------------------------- */
+
+  .preview-page {
+    width: 210mm;
+    min-width: 210mm;
+
+    min-height: 297mm;
+
+    flex: 0 0 auto;
+  }
+   
+
+  .resume-nav li {
+    padding: 7px 20px;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP
+   1024px+
+========================================================= */
+
+@media (min-width: 1024px) {
+
+  .preview-btn-container {
+  display : none
+}
+
+  .form_preview_container {
+    width: 100%;
+    height: calc(100vh - 87px);
+
+    display: flex;
+    flex-direction: row;
+
+
+
+    overflow: hidden;
+  }
+
+  .formsection {
+    width: 45%;
+    height: 100%;
+  }
+
+  .previewsection {
+    width: 55%;
+    height: 100%;
+  }
+
+  .preview-container {
+    width: 100%;
+    height: 100%;
+
+    flex: 1;
+
+    padding: 10px;
+
+    overflow: auto;
+
+    /* justify-content: center; */
+    align-items: flex-start;
+  }
+
+  .preview-page {
+    width: 210mm;
+    min-width: 210mm;
+
+    min-height: 297mm;
+
+    flex: 0 0 auto;
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   1440px+
+========================================================= */
+
+@media (min-width: 1440px) {
+
+  .form_preview_container {
+  gap: 6px;
+  padding: 6px;
+}
+
+  .formsection {
+    width: 42%;
+  }
+
+  .previewsection {
+    width: 58%;
+  }
+}
+```
+
+
+

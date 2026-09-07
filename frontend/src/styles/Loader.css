@@ -1,0 +1,214 @@
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+}
+
+.loader-content {
+  width: 220px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* Resume Paper */
+.resume-loader {
+  width: 110px;
+  height: 145px;
+
+  padding: 18px 14px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(23, 110, 253, 0.18);
+  border-radius: 8px;
+
+  box-shadow:
+    0 15px 35px rgba(23, 110, 253, 0.15),
+    0 5px 12px rgba(23, 110, 253, 0.08);
+
+  animation: resumeFloat 2s ease-in-out infinite;
+
+  overflow: hidden;
+}
+
+/* Resume Header */
+.resume-header {
+  width: 32px;
+  height: 32px;
+
+  margin-bottom: 15px;
+
+  border-radius: 6px;
+
+  background: rgb(23, 110, 253);
+
+  box-shadow: 0 5px 12px rgba(23, 110, 253, 0.25);
+
+  animation: headerPulse 1.5s ease-in-out infinite;
+}
+
+/* Resume Lines */
+.resume-line {
+  width: 100%;
+  height: 5px;
+
+  margin-bottom: 7px;
+
+  border-radius: 10px;
+
+  background: #dbeafe;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-line::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent
+  );
+
+  transform: translateX(-100%);
+
+  animation: shimmer 1.5s infinite;
+}
+
+.resume-line.large {
+  width: 70%;
+}
+
+.resume-line.medium {
+  width: 75%;
+}
+
+.resume-line.short {
+  width: 50%;
+}
+
+/* Section Heading */
+.resume-section {
+  width: 45%;
+  height: 7px;
+
+  margin: 12px 0 9px;
+
+  border-radius: 10px;
+
+  background: rgb(23, 110, 253);
+}
+
+/* Brand */
+.loader-brand {
+  margin-top: 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-brand span {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+
+  color: rgb(23, 110, 253);
+}
+
+.loader-brand small {
+  margin-top: 5px;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  color: #64748b;
+}
+
+/* Progress Bar */
+.loader-progress {
+  width: 120px;
+  height: 4px;
+
+  margin-top: 18px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #dbeafe;
+}
+
+.loader-progress span {
+  display: block;
+
+  width: 45%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: rgb(23, 110, 253);
+
+  box-shadow: 0 0 8px rgba(23, 110, 253, 0.35);
+
+  animation: progress 1.4s ease-in-out infinite;
+}
+
+/* Resume floating */
+@keyframes resumeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Logo animation */
+@keyframes headerPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.92);
+    opacity: 0.8;
+  }
+}
+
+/* Shimmer */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Progress animation */
+@keyframes progress {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(280%);
+  }
+}

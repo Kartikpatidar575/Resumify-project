@@ -1,0 +1,874 @@
+/* =========================================
+   MODERN EDGE TEMPLATE
+========================================= */
+
+.modern-template {
+  width: 100%;
+  min-height: 297mm;
+
+  box-sizing: border-box;
+
+  padding: 28px 48px 35px;
+
+  background: #ffffff;
+  color: #151515;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.modern-header {
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #d5d8dd;
+}
+
+.modern-header-top {
+  display: flex;
+  align-items: baseline;
+
+  flex-wrap: wrap;
+}
+
+.modern-first-name,
+.modern-last-name {
+  font-size: 53px;
+
+  line-height: 1.05;
+
+  font-weight: 700;
+
+  letter-spacing: -1.7px;
+}
+
+.modern-first-name {
+  color: #111111;
+}
+
+.modern-last-name {
+  color: #1769e8;
+}
+
+.modern-job-title {
+  margin: 9px 0 15px;
+
+  color: #555555;
+
+  font-size: 23px;
+
+  line-height: 1.2;
+
+  font-weight: 400;
+}
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.modern-contact {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  color: #222222;
+
+  font-size: 12.5px;
+}
+
+.modern-contact-item {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  white-space: nowrap;
+}
+
+.modern-icon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #222222;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.modern-contact-separator {
+  color: #aeb2b8;
+
+  font-size: 13px;
+}
+
+.modern-linkedin {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: #111111;
+
+  text-decoration: none;
+
+  font-weight: 500;
+}
+
+.modern-linkedin:hover {
+  text-decoration: underline;
+}
+
+.linkedin-icon {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 14px;
+  height: 14px;
+
+  background: #1769e8;
+
+  color: #ffffff;
+
+  border-radius: 2px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.modern-section {
+  width: 100%;
+
+  margin-top: 25px;
+}
+
+.modern-section-heading {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 10px;
+}
+
+.modern-section-heading h2 {
+  flex-shrink: 0;
+
+  margin: 0 15px;
+
+  color: #171717;
+
+  font-size: 17px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.15px;
+}
+
+.modern-dot {
+  flex-shrink: 0;
+
+  width: 16px;
+  height: 16px;
+
+  background: #1769e8;
+
+  border-radius: 50%;
+}
+
+.modern-heading-line {
+  position: relative;
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #8e939a;
+}
+
+.modern-heading-line::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+
+  top: 50%;
+
+  width: 5px;
+  height: 5px;
+
+  transform: translateY(-50%);
+
+  background: #1769e8;
+
+  border-radius: 50%;
+}
+
+.modern-section-content {
+  width: 100%;
+}
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.modern-summary {
+  margin: 0;
+
+  max-width: 100%;
+
+  color: #222222;
+
+  font-size: 13.5px;
+
+  line-height: 1.65;
+
+  text-align: left;
+}
+
+/* =========================================
+   EXPERIENCE
+========================================= */
+
+.modern-experience-item {
+  margin-bottom: 20px;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px dashed #c6c9ce;
+}
+
+.modern-experience-item:last-child {
+  margin-bottom: 0;
+
+  padding-bottom: 0;
+
+  border-bottom: none;
+}
+
+.modern-item-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 20px;
+}
+
+.modern-item-main {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.modern-item-header h3 {
+  margin: 0;
+
+  color: #151515;
+
+  font-size: 14px;
+
+  line-height: 1.35;
+
+  font-weight: 700;
+}
+
+.modern-company {
+  margin: 4px 0 0;
+
+  color: #1769e8;
+
+  font-size: 12.5px;
+
+  line-height: 1.4;
+
+  font-weight: 500;
+}
+
+.modern-bullet {
+  margin: 0 8px;
+
+  color: #1769e8;
+
+  font-weight: 700;
+}
+
+.modern-location {
+  color: #1769e8;
+}
+
+.modern-date {
+  flex-shrink: 0;
+
+  color: #222222;
+
+  font-size: 11.5px;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+}
+
+/* =========================================
+   RESPONSIBILITIES
+========================================= */
+
+.modern-responsibilities {
+  margin: 9px 0 0;
+
+  padding-left: 19px;
+
+  color: #222222;
+
+  font-size: 12.5px;
+
+  line-height: 1.65;
+}
+
+.modern-responsibilities li {
+  margin-bottom: 3px;
+
+  padding-left: 2px;
+}
+
+.modern-responsibilities li:last-child {
+  margin-bottom: 0;
+}
+
+.modern-responsibilities li::marker {
+  color: #111111;
+
+  font-size: 10px;
+}
+
+/* =========================================
+   EDUCATION
+========================================= */
+
+.modern-education-item {
+  width: 100%;
+}
+
+.modern-university {
+  margin: 2px 0 0;
+
+  color: #777777;
+
+  font-size: 11.5px;
+
+  line-height: 1.4;
+}
+
+.modern-course {
+  margin: 3px 0 0;
+
+  color: #555555;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+.modern-score {
+  margin: 5px 0 0;
+
+  color: #222222;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================================
+   SKILLS
+========================================= */
+
+.modern-skills {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+}
+
+.modern-skill {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 12px;
+
+  background: #eef4fd;
+
+  border-radius: 7px;
+
+  color: #222222;
+
+  font-size: 11.5px;
+
+  line-height: 1.2;
+
+  font-weight: 500;
+}
+
+.modern-skill small {
+  color: #1769e8;
+
+  font-size: 9px;
+
+  font-weight: 600;
+}
+
+/* =========================================
+   PROJECTS
+========================================= */
+
+.modern-project-item {
+  margin-bottom: 16px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px dashed #d0d3d7;
+}
+
+.modern-project-item:last-child {
+  margin-bottom: 0;
+
+  padding-bottom: 0;
+
+  border-bottom: none;
+}
+
+.modern-project-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 20px;
+}
+
+.modern-project-header h3 {
+  margin: 0;
+
+  color: #151515;
+
+  font-size: 14px;
+
+  line-height: 1.35;
+
+  font-weight: 700;
+}
+
+.modern-technology {
+  flex-shrink: 0;
+
+  max-width: 45%;
+
+  color: #1769e8;
+
+  font-size: 11.5px;
+
+  line-height: 1.4;
+
+  font-weight: 500;
+
+  text-align: right;
+}
+
+.modern-project-description {
+  margin: 7px 0 0;
+
+  max-width: 90%;
+
+  color: #222222;
+
+  font-size: 12.5px;
+
+  line-height: 1.55;
+}
+
+/* =========================================
+   ACADEMIC DETAILS
+========================================= */
+
+.modern-academic-item {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 20px;
+
+  margin-bottom: 13px;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px dashed #c6c9ce;
+}
+
+.modern-academic-item:last-child {
+  margin-bottom: 0;
+
+  padding-bottom: 0;
+
+  border-bottom: none;
+}
+
+.modern-academic-item h3 {
+  margin: 0;
+
+  color: #151515;
+
+  font-size: 14px;
+
+  line-height: 1.35;
+
+  font-weight: 700;
+}
+
+.modern-academic-meta {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 2px;
+
+  flex-shrink: 0;
+
+  color: #555555;
+
+  font-size: 11.5px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+
+  text-align: right;
+}
+
+/* =========================================
+   PRINT / PDF
+========================================= */
+
+@media print {
+  @page {
+    size: A4;
+
+    margin: 0;
+  }
+
+  .modern-template {
+    width: 210mm;
+
+    min-height: 297mm;
+
+    margin: 0;
+
+    padding: 22px 42px 30px;
+
+    font-size: 12px;
+
+    box-shadow: none;
+  }
+
+  .modern-header {
+    padding-bottom: 17px;
+  }
+
+  .modern-first-name,
+  .modern-last-name {
+    font-size: 43px;
+  }
+
+  .modern-job-title {
+    font-size: 19px;
+
+    margin: 7px 0 12px;
+  }
+
+  .modern-contact {
+    font-size: 10.5px;
+  }
+
+  .modern-section {
+    margin-top: 20px;
+  }
+
+  .modern-section-heading {
+    margin-bottom: 8px;
+  }
+
+  .modern-section-heading h2 {
+    font-size: 14px;
+  }
+
+  .modern-dot {
+    width: 13px;
+    height: 13px;
+  }
+
+  .modern-summary {
+    font-size: 11.5px;
+
+    line-height: 1.55;
+  }
+
+  .modern-item-header h3,
+  .modern-project-header h3,
+  .modern-academic-item h3 {
+    font-size: 12px;
+  }
+
+  .modern-company {
+    font-size: 10.5px;
+  }
+
+  .modern-date {
+    font-size: 10px;
+  }
+
+  .modern-responsibilities {
+    font-size: 10.5px;
+
+    line-height: 1.5;
+  }
+
+  .modern-course,
+  .modern-score,
+  .modern-university {
+    font-size: 10px;
+  }
+
+  .modern-skill {
+    padding: 5px 9px;
+
+    font-size: 10px;
+  }
+
+  .modern-technology {
+    font-size: 10px;
+  }
+
+  .modern-project-description {
+    font-size: 10.5px;
+  }
+
+  .modern-academic-meta {
+    font-size: 10px;
+  }
+
+  .modern-experience-item,
+  .modern-education-item,
+  .modern-project-item,
+  .modern-academic-item {
+    break-inside: avoid;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) and (min-width: 701px) {
+  .modern-template {
+    padding: 28px 35px 35px;
+  }
+
+  .modern-first-name,
+  .modern-last-name {
+    font-size: 46px;
+  }
+
+  .modern-job-title {
+    font-size: 20px;
+  }
+
+  .modern-contact {
+    font-size: 11.5px;
+  }
+
+  .modern-section {
+    margin-top: 22px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .modern-template {
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 28px 25px;
+  }
+
+  .modern-first-name,
+  .modern-last-name {
+    font-size: 38px;
+
+    letter-spacing: -1px;
+  }
+
+  .modern-job-title {
+    font-size: 19px;
+  }
+
+  .modern-contact {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 5px;
+  }
+
+  .modern-contact-separator {
+    display: none;
+  }
+
+  .modern-item-header,
+  .modern-project-header,
+  .modern-academic-item {
+    flex-direction: column;
+
+    gap: 5px;
+  }
+
+  .modern-date {
+    order: -1;
+
+    text-align: left;
+  }
+
+  .modern-technology {
+    max-width: 100%;
+
+    text-align: left;
+  }
+
+  .modern-project-description {
+    max-width: 100%;
+  }
+
+  .modern-academic-meta {
+    flex-direction: row;
+
+    align-items: flex-start;
+
+    text-align: left;
+  }
+
+  .modern-section {
+    margin-top: 22px;
+  }
+
+  .modern-section-heading h2 {
+    font-size: 15px;
+
+    margin: 0 10px;
+  }
+
+  .modern-dot {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 425px) {
+  .modern-template {
+    padding: 22px 17px;
+  }
+
+  .modern-first-name,
+  .modern-last-name {
+    font-size: 32px;
+  }
+
+  .modern-job-title {
+    font-size: 16px;
+
+    margin: 7px 0 12px;
+  }
+
+  .modern-contact {
+    font-size: 10.5px;
+  }
+
+  .modern-section-heading h2 {
+    font-size: 13px;
+
+    margin: 0 8px;
+  }
+
+  .modern-summary {
+    font-size: 11.5px;
+
+    line-height: 1.55;
+  }
+
+  .modern-item-header h3,
+  .modern-project-header h3,
+  .modern-academic-item h3 {
+    font-size: 12.5px;
+  }
+
+  .modern-company {
+    font-size: 11px;
+  }
+
+  .modern-responsibilities {
+    font-size: 11px;
+
+    padding-left: 17px;
+  }
+
+  .modern-skill {
+    padding: 5px 9px;
+
+    font-size: 10px;
+  }
+
+  .modern-project-description {
+    font-size: 11px;
+  }
+}
