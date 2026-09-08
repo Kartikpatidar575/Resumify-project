@@ -1,4 +1,4 @@
-import "../../styles/login.css";
+import "../../styles/Login.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";

@@ -41,7 +41,6 @@
   margin-bottom: 0.5rem;
 }
 
-
 .ul-list-div {
   display: flex;
   justify-content: center;
@@ -127,15 +126,14 @@
 
   text-align: center;
   text-decoration: none;
-ś
   color: #374151;
   border-radius: 8px;
 
   transition: 0.2s ease;
 }
 
-.ul-list-active active{
-  color : yellosw
+.ul-list-active active {
+  color: yellosw;
 }
 
 .mobile-logout-btn button {
@@ -212,20 +210,20 @@
   min-height: 60px;
 }
 
-.header-logout-btn{
-background-color : rgba(245, 52, 52);
-padding : 5px 2px;
-color : white;
-margin-bottom: 0.5rem;
+.header-logout-btn {
+  background-color: rgba(245, 52, 52);
+  padding: 5px 2px;
+  color: white;
+  margin-bottom: 0.5rem;
 }
-.header-logout-div{
-  width : auto;
-  display:flex;
-  justify-content:flex-end;
-  align-items : center;
+.header-logout-div {
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 .header-logout-btn:hover {
-  background-color : rgba(245, 52, 52, 0.78);
+  background-color: rgba(245, 52, 52, 0.78);
 }
 
 /* .ul-list-active .nav-link:hover {
@@ -242,12 +240,12 @@ margin-bottom: 0.5rem;
   .ul-list {
     display: none;
   }
-  .header-logout-btn{
-display:none;
-}
-.header-logout-div{
-  display:none;
-}
+  .header-logout-btn {
+    display: none;
+  }
+  .header-logout-div {
+    display: none;
+  }
   .auth-button {
     display: none;
   }
@@ -265,7 +263,7 @@ display:none;
 @media (min-width: 670px) and (max-width: 991px) {
   .ul-list {
     display: flex;
-        /* max-width: 50%; */
+    /* max-width: 50%; */
   }
 
   .login-btn {
@@ -279,7 +277,6 @@ display:none;
   .text-font {
     font-size: 13px;
   }
- 
 }
 
 /* =========================
@@ -294,13 +291,13 @@ display:none;
 
   .auth-button {
     display: flex;
-    width : 250px;
+    width: 250px;
   }
-  .logo-container{
-    width : 250px;
+  .logo-container {
+    width: 250px;
   }
-  .header-logout-div{
-    width : 250px;
+  .header-logout-div {
+    width: 250px;
   }
 
   .hamburger-menu {

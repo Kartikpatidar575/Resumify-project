@@ -1,6 +1,6 @@
 import professionalProImage from "../assets/templateImages/professionalProImage.png";
 import simplyClean from "../assets/templateImages/simplyClean.png";
-import ModernTemplate from "../assets/templateImages/ModernTemplate.png";
+import ModernTemplate from "../assets/templateImages/modernTemplate.png";
 const templates = [
   {
     templateId: "template01",
