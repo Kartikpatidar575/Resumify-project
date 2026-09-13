@@ -6,16 +6,19 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import ScrollToHash from "./components/ScrollToHash.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
-import { LoadingProvider } from "../context/LoginContext.jsx";
+import { LoadingProvider } from "../context/LoadingContext.jsx";
+import { HelmetProvider } from "react-helmet-async";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <LoadingProvider>
-        <ScrollToTop />
-        <ScrollToHash />
-        <App />
-      </LoadingProvider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <LoadingProvider>
+          <ScrollToTop />
+          <ScrollToHash />
+          <App />
+        </LoadingProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   </StrictMode>,
 );

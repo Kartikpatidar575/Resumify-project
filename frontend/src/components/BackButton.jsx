@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/BackButton.css";
+import "../styles/component/BackButton.css";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 

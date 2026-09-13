@@ -7,11 +7,11 @@ const resumeUpdateSchema = Joi.object({
 
   templateId: Joi.string().trim(),
 
-  professionalSummary: Joi.string().trim().max(2000),
+  professionalSummary: Joi.string().trim().max(300),
 
   personalDetails: Joi.object({
     firstName: Joi.string().trim().max(50),
-    lastName: Joi.string().trim().max(50),
+    lastName: Joi.string().trim().max(50).allow(""),
     email: Joi.string().email(),
     phoneNumber: Joi.string().trim().max(20),
     country: Joi.string().trim().max(50),
@@ -56,45 +56,47 @@ const resumeUpdateSchema = Joi.object({
       "Post Graduation",
     ),
 
-    secondarySchoolName: Joi.string().trim(),
-    secondaryBoard: Joi.string().trim(),
-    secondaryPassingYear: Joi.string(),
-    secondaryPercentage: Joi.string(),
+    secondarySchoolName: Joi.string().trim().allow(""),
+    secondaryBoard: Joi.string().trim().allow(""),
+    secondaryPassingYear: Joi.string().allow(""),
+    secondaryPercentage: Joi.string().allow(""),
 
-    seniorSecondarySchoolName: Joi.string().trim(),
-    seniorSecondaryBoard: Joi.string().trim(),
-    seniorSecondaryPassingYear: Joi.string(),
-    seniorSecondaryPercentage: Joi.string(),
+    seniorSecondarySchoolName: Joi.string().trim().allow(""),
+    seniorSecondaryBoard: Joi.string().trim().allow(""),
+    seniorSecondaryPassingYear: Joi.string().allow(""),
+    seniorSecondaryPercentage: Joi.string().allow(""),
 
-    diplomaCollegeName: Joi.string().trim(),
-    diplomaUniversity: Joi.string().trim(),
-    diplomaCourse: Joi.string().trim(),
-    diplomaDegree: Joi.string().trim(),
-    diplomaStartingYear: Joi.string(),
-    diplomaPassingYear: Joi.string(),
-    diplomaPercentage: Joi.string(),
+    diplomaCollegeName: Joi.string().trim().allow(""),
+    diplomaUniversity: Joi.string().trim().allow(""),
+    diplomaCourse: Joi.string().trim().allow(""),
+    diplomaDegree: Joi.string().trim().allow(""),
+    diplomaStartingYear: Joi.string().allow(""),
+    diplomaPassingYear: Joi.string().allow(""),
+    diplomaPercentage: Joi.string().allow(""),
 
-    graduationCollegeName: Joi.string().trim(),
-    graduationUniversity: Joi.string().trim(),
-    graduationCourse: Joi.string().trim(),
-    graduationDegree: Joi.string().trim(),
-    graduationStartingYear: Joi.string(),
-    graduationPassingYear: Joi.string(),
-    graduationPercentage: Joi.string(),
+    graduationCollegeName: Joi.string().trim().allow(""),
+    graduationUniversity: Joi.string().trim().allow(""),
+    graduationCourse: Joi.string().trim().allow(""),
+    graduationDegree: Joi.string().trim().allow(""),
+    graduationStartingYear: Joi.string().allow(""),
+    graduationPassingYear: Joi.string().allow(""),
+    graduationPercentage: Joi.string().allow(""),
 
-    postGraduationCollegeName: Joi.string().trim(),
-    postGraduationUniversity: Joi.string().trim(),
-    postGraduationCourse: Joi.string().trim(),
-    postGraduationDegree: Joi.string().trim(),
-    postGraduationStartingYear: Joi.string(),
-    postGraduationPassingYear: Joi.string(),
-    postGraduationPercentage: Joi.string(),
+    postGraduationCollegeName: Joi.string().trim().allow(""),
+    postGraduationUniversity: Joi.string().trim().allow(""),
+    postGraduationCourse: Joi.string().trim().allow(""),
+    postGraduationDegree: Joi.string().trim().allow(""),
+    postGraduationStartingYear: Joi.string().allow(""),
+    postGraduationPassingYear: Joi.string().allow(""),
+    postGraduationPercentage: Joi.string().allow(""),
   }),
 
   skills: Joi.array().items(
     Joi.object({
       name: Joi.string().trim().required(),
-      level: Joi.string().valid("Beginner", "Intermediate", "Advanced"),
+      level: Joi.string()
+        .valid("Beginner", "Intermediate", "Advanced", "Expert")
+        .allow(""),
     }),
   ),
 
@@ -103,7 +105,7 @@ const resumeUpdateSchema = Joi.object({
       projectName: Joi.string().trim(),
       yourRole: Joi.string().trim(),
       technologyUsed: Joi.string().trim(),
-      projectDescription: Joi.string().max(2000),
+      projectDescription: Joi.string().max(200),
       projectLink: Joi.string().uri().allow(""),
     }),
   ),
@@ -236,7 +238,6 @@ const getSingleResumeController = async (req, res) => {
 
 const updateResumeController = async (req, res) => {
   try {
-    console.log(req.params);
     const { resumeId } = req.params;
 
     if (!req.body || Object.keys(req.body).length === 0) {
@@ -247,7 +248,6 @@ const updateResumeController = async (req, res) => {
 
     const { error } = resumeUpdateSchema.validate(req.body);
 
-    console.log(error);
     if (error) {
       return res.status(400).json({
         message: error.details[0].message,

@@ -1,4 +1,4 @@
-import "../../styles/Login.css";
+import "../../styles/auth/Login.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
@@ -23,7 +23,7 @@ const Login = () => {
       });
       toast.success(res.data.message);
       login(res.data.token);
-      navigate("/create-resume");
+      navigate("/dashboard/create-resume");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -42,7 +42,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
       login(res.data.token);
-      navigate("/create-resume");
+      navigate("/dashboard/create-resume");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }

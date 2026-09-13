@@ -3,8 +3,13 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Container from "./Container";
 import templates from "../data/templates";
-
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 const TemplateSection = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext);
   const templateSliderRef = useRef(null);
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -52,6 +57,21 @@ const TemplateSection = () => {
     });
   };
 
+  const handleSelectTemplate = async (templateId) => {
+    try {
+      if (!isAuthenticated) {
+        navigate("/login");
+        return;
+      }
+      const res = await api.post("/resume", {
+        templateId,
+      });
+      const resumeId = res.data.resume._id;
+      navigate(`/dashboard/resume/${resumeId}/edit`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <Container>
       <section className="template-section-home py-5">
@@ -83,7 +103,11 @@ const TemplateSection = () => {
 
           <div className="template-slider-home" ref={templateSliderRef}>
             {templates.map((template) => (
-              <div className="template-card-home" key={template.templateId}>
+              <div
+                className="template-card-home"
+                key={template.templateId}
+                onClick={() => handleSelectTemplate(template.templateId)}
+              >
                 <span>{template.templateName}</span>
 
                 <img src={template.templateImage} alt={template.templateName} />

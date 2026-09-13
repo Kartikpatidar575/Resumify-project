@@ -14,6 +14,23 @@ const ModernTemplate = ({ resumeData = {} }) => {
   const { jobs = [], internships = [] } = experience;
 
   /* ================================
+     SKILL LEVEL RANKING
+  ================================= */
+  const LEVEL_RANK = {
+    Expert: 4,
+    Advanced: 3,
+    Intermediate: 2,
+    Beginner: 1,
+  };
+
+  // Sort by skill level:
+  // Expert → Advanced → Intermediate → Beginner
+  // The level itself is NOT displayed in the resume.
+  const sortedSkills = [...skills].sort(
+    (a, b) => (LEVEL_RANK[b?.level] || 0) - (LEVEL_RANK[a?.level] || 0),
+  );
+
+  /* ================================
      PERSONAL DETAILS
   ================================= */
 
@@ -366,19 +383,15 @@ const ModernTemplate = ({ resumeData = {} }) => {
           SKILLS
       ================================= */}
 
-      {skills.length > 0 && (
+      {sortedSkills.length > 0 && (
         <Section title="Skills">
           <div className="modern-skills">
-            {skills.map((skill, index) => {
+            {sortedSkills.map((skill, index) => {
               const skillName = skill?.name || "";
-
-              const skillLevel = skill?.level || "";
 
               return (
                 <div className="modern-skill" key={`skill-${index}`}>
                   <span>{skillName}</span>
-
-                  {skillLevel && <small>{skillLevel}</small>}
                 </div>
               );
             })}

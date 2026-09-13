@@ -1,5 +1,6 @@
 require("dotenv").config();
 const User = require("../models/user");
+const PendingUser = require("../models/pendingUser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const transporter = require("../config/nodemailer");
@@ -15,6 +16,13 @@ const passwordSchema = Joi.string()
   .pattern(/[0-9]/)
   .pattern(/[!@#$%^&*(),.?":{}|<>]/)
   .required();
+
+const verifyOtpSchema = Joi.object({
+  email: Joi.string().trim().lowercase().email().required(),
+  otp: Joi.string()
+    .pattern(/^\d{6}$/)
+    .required(),
+});
 
 const googleLoginController = async (req, res) => {
   try {
@@ -122,6 +130,7 @@ const registerSchema = Joi.object({
   password: passwordSchema,
   confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
 });
+
 const registerController = async (req, res) => {
   try {
     const { error } = registerSchema.validate(req.body);
@@ -131,25 +140,221 @@ const registerController = async (req, res) => {
         message: error.details[0].message,
       });
     }
-    const { fullName, email, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { fullName, email, password } = req.body;
 
     const userExist = await User.findOne({ email });
 
     if (userExist) {
-      return res.status(409).json({ message: "User Already Register" });
+      return res.status(409).json({
+        message: "User already registered",
+      });
     }
 
-    await User.create({
-      fullName,
-      email,
-      password: hashedPassword,
+    const existingPendingUser = await PendingUser.findOne({ email });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
+    let pendingUser;
+
+    if (existingPendingUser) {
+      existingPendingUser.fullName = fullName;
+      existingPendingUser.password = hashedPassword;
+      existingPendingUser.otp = otp;
+      existingPendingUser.otpExpiresAt = otpExpiresAt;
+
+      pendingUser = await existingPendingUser.save();
+    } else {
+      pendingUser = new PendingUser({
+        fullName,
+        email,
+        password: hashedPassword,
+        otp,
+        otpExpiresAt,
+      });
+
+      await pendingUser.save();
+    }
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your Resumify OTP",
+
+      text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
+
+      html: `
+        <div>
+          <h2>Resumify OTP Verification</h2>
+
+          <p>Your OTP is:</p>
+
+          <h1>${otp}</h1>
+
+          <p>This OTP will expire in 5 minutes.</p>
+
+          <p>
+            If you did not request this OTP, please ignore this email.
+          </p>
+        </div>
+      `,
     });
 
-    res.status(201).json({ message: "User Created Successfully" });
+    return res.status(201).json({
+      success: true,
+      message: "OTP sent to your email. Please verify your email.",
+    });
   } catch (error) {
-    res.status(500).json(error.message);
+    console.error("Register Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong during registration.",
+    });
+  }
+};
+
+const resendRegisterOTPController = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required",
+      });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const pendingUser = await PendingUser.findOne({
+      email: normalizedEmail,
+    });
+
+    if (!pendingUser) {
+      return res.status(404).json({
+        message: "Registration not found. Please register again.",
+      });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpiresAt = new Date(Date.now() + 5 * 60 * 1000);
+
+    pendingUser.otp = otp;
+    pendingUser.otpExpiresAt = otpExpiresAt;
+    await pendingUser.save();
+
+    // Send OTP email
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your Resumify OTP",
+
+      text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
+
+      html: `
+        <div>
+          <h2>Resumify OTP Verification</h2>
+
+          <p>Your OTP is:</p>
+
+          <h1>${otp}</h1>
+
+          <p>This OTP will expire in 5 minutes.</p>
+
+          <p>
+            If you did not request this OTP, please ignore this email.
+          </p>
+        </div>
+      `,
+    });
+
+    return res.status(200).json({
+      message: "A new OTP has been sent to your email.",
+    });
+  } catch (error) {
+    console.error("Resend registration OTP error:", error);
+
+    return res.status(500).json({
+      message: "Failed to resend OTP. Please try again.",
+    });
+  }
+};
+
+const verifyRegisterOTPController = async (req, res) => {
+  try {
+    const { error } = verifyOtpSchema.validate(req.body);
+
+    if (error) {
+      return res.status(400).json({
+        message: error.details[0].message,
+      });
+    }
+
+    const { email, otp } = req.body;
+
+    const pendingUser = await PendingUser.findOne({ email });
+
+    if (!pendingUser) {
+      return res
+        .status(404)
+        .json({ message: "Registration not found. Please register again." });
+    }
+
+    if (!pendingUser?.otp || !pendingUser?.otpExpiresAt) {
+      return res.status(400).json({
+        message: "OTP not found or already used",
+      });
+    }
+
+    if (pendingUser.otpExpiresAt < new Date()) {
+      return res
+        .status(400)
+        .json({ message: "OTP expired. Please register again." });
+    }
+
+    if (pendingUser.otp !== otp) {
+      return res.status(400).json({
+        message: "Invalid OTP",
+      });
+    }
+
+    const userExist = await User.findOne({ email: pendingUser.email });
+    if (userExist) {
+      await PendingUser.deleteOne({ _id: pendingUser._id });
+      return res.status(409).json({ message: "User already registered." });
+    }
+
+    const user = await User.create({
+      fullName: pendingUser.fullName,
+      email: pendingUser.email,
+      password: pendingUser.password,
+    });
+
+    await PendingUser.deleteOne({ _id: pendingUser._id });
+
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "12h",
+      },
+    );
+
+    return res.status(200).json({
+      message: "OTP verified successfully. Registration completed.",
+      token,
+    });
+  } catch (error) {
+    console.error("Verify Register OTP Error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong while verifying OTP.",
+    });
   }
 };
 
@@ -187,19 +392,19 @@ const forgotPasswordController = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Your Resumify OTP",
-      text: `Your OTP is ${otp}. It will expire in 2 minutes`,
+      text: `Your  Reset OTP is ${otp}. It will expire in 5 minutes`,
       html: `
     <div>
       <h2>Resumify OTP Verification</h2>
-      <p>Your OTP is:</p>
+      <p>Your Reset OTP is:</p>
       <h1>${otp}</h1>
-      <p>This OTP will expire in 2 minutes.</p>
+      <p>This OTP will expire in 5 minutes.</p>
       <p>If you did not request this OTP, please ignore this email.</p>
     </div>
   `,
     });
     user.otp.code = otp;
-    user.otp.expiresAt = new Date(Date.now() + 2 * 60 * 1000);
+    user.otp.expiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
     await user.save();
     return res.status(200).json({
@@ -212,12 +417,6 @@ const forgotPasswordController = async (req, res) => {
   }
 };
 
-const verifyOtpSchema = Joi.object({
-  email: Joi.string().trim().lowercase().email().required(),
-  otp: Joi.string()
-    .pattern(/^\d{6}$/)
-    .required(),
-});
 const verifyOtpController = async (req, res) => {
   try {
     const { error } = verifyOtpSchema.validate(req.body);
@@ -323,4 +522,6 @@ module.exports = {
   verifyOtpController,
   setPasswordController,
   googleLoginController,
+  verifyRegisterOTPController,
+  resendRegisterOTPController,
 };

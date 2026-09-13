@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticate] = useState(
-    !!localStorage.getItem("token"),
+    () => !!localStorage.getItem("token"),
   );
 
   const login = (token) => {

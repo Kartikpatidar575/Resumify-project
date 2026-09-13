@@ -6,7 +6,6 @@
   width: 100%;
   max-width: 1200px;
   min-height: 1650px;
-  margin: 30px auto;
   display: grid;
   grid-template-columns: 330px 1fr;
   background: #ffffff;
@@ -415,7 +414,6 @@
 @media (max-width: 1000px) {
   .simply-clean {
     grid-template-columns: 285px 1fr;
-    margin: 15px auto;
   }
 
   .simply-clean-sidebar {
@@ -449,7 +447,6 @@
     display: block;
     width: 100%;
     min-height: auto;
-    margin: 0;
     box-shadow: none;
   }
 
@@ -551,7 +548,6 @@
     width: 1200px;
     max-width: none;
     min-height: 1650px;
-    margin: 0;
     box-shadow: none;
   }
 }

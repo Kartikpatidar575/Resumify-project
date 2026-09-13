@@ -10,7 +10,7 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   const handleCreateResume = () => {
-    navigate("/create-resume");
+    navigate("/dashboard/create-resume");
   };
 
   const handleViewTemplates = () => {

@@ -1,4 +1,4 @@
-import "../styles/Pricing.css";
+import "../styles/component/Pricing.css";
 import Container from "./Container";
 
 export default function Pricing() {

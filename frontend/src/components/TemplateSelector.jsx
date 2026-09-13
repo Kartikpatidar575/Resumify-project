@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import "../styles/TemplateSelector.css";
+import "../styles/component/TemplateSelector.css";
 import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
@@ -29,20 +29,11 @@ const TemplateSelector = () => {
         navigate("/login");
         return;
       }
-      const token = localStorage.getItem("token");
-      const res = await api.post(
-        "/resume",
-        {
-          templateId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
+      const res = await api.post("/resume", {
+        templateId,
+      });
       const resumeId = res.data.resume._id;
-      navigate(`/create-resume/${resumeId}`);
+      navigate(`/dashboard/resume/${resumeId}/edit`);
     } catch (error) {
       console.error(error);
     }

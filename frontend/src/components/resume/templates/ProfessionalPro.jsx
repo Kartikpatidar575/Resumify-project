@@ -1,6 +1,13 @@
 import React from "react";
 import "../templatesCss/ProfessionalPro.css";
 
+const LEVEL_RANK = {
+  Expert: 4,
+  Advanced: 3,
+  Intermediate: 2,
+  Beginner: 1,
+};
+
 const ProfessionalPro = ({ resumeData = {} }) => {
   const {
     personalDetails = {},
@@ -14,6 +21,13 @@ const ProfessionalPro = ({ resumeData = {} }) => {
   const fullName = `${personalDetails.firstName || ""} ${
     personalDetails.lastName || ""
   }`.trim();
+
+  // Sort skills by level:
+  // Expert → Advanced → Intermediate → Beginner
+  // Level is used only for sorting and is NOT displayed.
+  const sortedSkills = [...skills].sort(
+    (a, b) => (LEVEL_RANK[b.level] || 0) - (LEVEL_RANK[a.level] || 0),
+  );
 
   return (
     <div className="professional-pro">
@@ -57,18 +71,14 @@ const ProfessionalPro = ({ resumeData = {} }) => {
         </div>
 
         {/* ================= SKILLS ================= */}
-        {skills.length > 0 && (
+        {sortedSkills.length > 0 && (
           <div className="pp-section">
             <h3>SKILLS</h3>
 
             <div className="pp-skills">
-              {skills.map((skill, index) => (
+              {sortedSkills.map((skill, index) => (
                 <div className="pp-skill" key={index}>
                   {skill.name}
-
-                  {skill.level && (
-                    <small className="skill-level">{skill.level}</small>
-                  )}
                 </div>
               ))}
             </div>

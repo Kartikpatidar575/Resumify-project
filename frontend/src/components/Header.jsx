@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import "../styles/Header.css";
+import "../styles/component/Header.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { IoMenuOutline, IoClose } from "react-icons/io5";

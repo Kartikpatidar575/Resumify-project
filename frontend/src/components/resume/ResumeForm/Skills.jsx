@@ -4,7 +4,7 @@ const Skills = ({ resumeData, setResumeData }) => {
   const addSkill = () => {
     setResumeData((curr) => ({
       ...curr,
-      skills: [...curr.skills, { name: "", level: "" }],
+      skills: [...curr.skills, { name: "", level: "Beginner" }],
     }));
   };
 
@@ -51,10 +51,10 @@ const Skills = ({ resumeData, setResumeData }) => {
                 handleSkillChange(index, "level", e.target.value)
               }
             >
-              <option value="">Expertise Level</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
+              <option value="Expert">Expert</option>
             </select>
 
             {/* Remove */}

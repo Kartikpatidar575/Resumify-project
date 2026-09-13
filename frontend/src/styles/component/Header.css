@@ -202,7 +202,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 2000;
   background: white;
 }
 
@@ -222,6 +222,7 @@
   justify-content: flex-end;
   align-items: center;
 }
+
 .header-logout-btn:hover {
   background-color: rgba(245, 52, 52, 0.78);
 }

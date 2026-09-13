@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPlus, FaSearch, FaEdit, FaTrash, FaFileAlt } from "react-icons/fa";
 
-import "../../styles/MyResume.css";
+import "../../styles/dashboard/MyResume.css";
 import api from "../../api/axios";
 import { AuthContext } from "../../../context/AuthContext";
 import templates from "../../data/templates";
-import { useLoading } from "../../../context/LoginContext";
+import { useLoading } from "../../../context/LoadingContext";
 import Loader from "../../components/Loader";
 
 const MyResume = () => {
@@ -31,11 +31,7 @@ const MyResume = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await api.get("/resume", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await api.get("/resume");
 
         setResumes(response.data.resumes || []);
       } catch (error) {
@@ -58,13 +54,7 @@ const MyResume = () => {
     if (!confirmDelete) return;
 
     try {
-      const token = localStorage.getItem("token");
-
-      await api.delete(`/resume/${resumeId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await api.delete(`/resume/${resumeId}`);
 
       setResumes((prev) => prev.filter((resume) => resume._id !== resumeId));
     } catch (error) {
@@ -110,7 +100,7 @@ const MyResume = () => {
 
         <button
           className="create-resume-btn"
-          onClick={() => navigate("/create-resume")}
+          onClick={() => navigate("/dashboard/create-resume")}
         >
           <FaPlus />
           Create Resume
@@ -206,7 +196,9 @@ const MyResume = () => {
                 <div className="resume-card-actions">
                   <button
                     className="edit-btn"
-                    onClick={() => navigate(`/create-resume/${resume._id}`)}
+                    onClick={() =>
+                      navigate(`/dashboard/resume/${resume._id}/edit`)
+                    }
                   >
                     <FaEdit />
                     Edit
@@ -243,7 +235,7 @@ const MyResume = () => {
           {!search && (
             <button
               className="create-resume-btn"
-              onClick={() => navigate("../create-resume")}
+              onClick={() => navigate("/dashboard/create-resume")}
             >
               <FaPlus />
               Create Resume

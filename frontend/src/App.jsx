@@ -16,6 +16,7 @@ import VerifyOtp from "./pages/auth/VerifyOtp";
 import SetPassword from "./pages/auth/SetPassword";
 import { Navigate } from "react-router-dom";
 import MyResume from "./pages/dashboard/MyResume";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   return (
@@ -31,18 +32,33 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/verify-otp" element={<VerifyOtp />} />
+            <Route
+              path="/verify-register-otp"
+              element={<VerifyOtp flow="register" />}
+            />
+            <Route
+              path="/verify-reset-otp"
+              element={<VerifyOtp flow="reset" />}
+            />
             <Route path="/set-password" element={<SetPassword />} />
 
             <Route element={<ProtectedRoute />}>
-              <Route path="/create-resume" element={<DashboardLayout />}>
-                <Route index element={<CreateResume />} />
-                <Route path=":resumeId" element={<ResumeBuilder />} />
+              <Route path="/dashboard" element={<DashboardLayout />}>
+                <Route
+                  index
+                  element={<Navigate to="/dashboard/create-resume" replace />}
+                />
+                <Route path="create-resume" element={<CreateResume />} />
+                <Route
+                  path="resume/:resumeId/edit"
+                  element={<ResumeBuilder />}
+                />
                 <Route path="my-resume" element={<MyResume />} />
               </Route>
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <Analytics />
         </AuthProvider>
       </GoogleOAuthProvider>
     </>

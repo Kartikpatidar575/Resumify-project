@@ -4,7 +4,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 import toast, { Toaster } from "react-hot-toast";
 import api from "../../api/axios";
-import "../../styles/SetPassword.css";
+import "../../styles/auth/SetPassword.css";
 
 const SetPassword = () => {
   const navigate = useNavigate();
@@ -50,11 +50,7 @@ const SetPassword = () => {
           password,
           confirmPassword,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${resetToken}`,
-          },
-        },
+        { authToken: resetToken },
       );
 
       toast.success(res.data.message);

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Container from "./Container";
-import "../styles/Footer.css";
+import "../styles/component/Footer.css";
 import toast, { Toaster } from "react-hot-toast";
 import api from "../api/axios";
 import { AuthContext } from "../../context/AuthContext";
@@ -28,17 +28,9 @@ const Footer = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await api.post(
-        "/feedback",
-        {
-          message: feedback.trim(),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
+      const res = await api.post("/feedback", {
+        message: feedback.trim(),
+      });
 
       toast.success(res.data.message);
 

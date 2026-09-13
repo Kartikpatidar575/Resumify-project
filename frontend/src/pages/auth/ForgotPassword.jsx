@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import toast, { Toaster } from "react-hot-toast";
 import api from "../../api/axios";
-import "../../styles/ForgotPassword.css";
+import "../../styles/auth/ForgotPassword.css";
 import { NavLink } from "react-router-dom";
 
 const ForgotPassword = () => {
@@ -24,7 +24,11 @@ const ForgotPassword = () => {
 
       toast.success(res.data.message);
       sessionStorage.setItem("resetEmail", email);
-      navigate("/verify-otp");
+      sessionStorage.setItem(
+        "resetOtpExpiry",
+        String(Date.now() + 5 * 60 * 1000),
+      );
+      navigate("/verify-reset-otp");
     } catch (error) {
       toast.error(error?.response?.data?.message || "Something went wrong");
     } finally {

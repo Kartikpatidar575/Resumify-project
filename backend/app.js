@@ -33,7 +33,7 @@ const generalLimiter = rateLimit({
   },
 });
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 15 * 60 * 1000,
   max: 10,
   message: {
     success: false,
