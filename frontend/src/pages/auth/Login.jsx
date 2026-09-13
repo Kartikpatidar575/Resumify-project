@@ -112,7 +112,7 @@ const Login = () => {
 
           <p className="text-center mt-4">
             Don't have an account?
-            <NavLink to="/Register" className="ms-1">
+            <NavLink to="/register" className="ms-1">
               Register
             </NavLink>
           </p>
