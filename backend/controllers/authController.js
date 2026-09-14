@@ -141,6 +141,10 @@ const registerController = async (req, res) => {
       });
     }
 
+    transporter.verify((err, success) => {
+  if (err) console.error("❌", err);
+  else console.log("✅ Server is ready to send emails");
+});
     const { fullName, email, password } = req.body;
 
     const userExist = await User.findOne({ email });
