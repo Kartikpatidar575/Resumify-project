@@ -3,10 +3,10 @@ const User = require("../models/user");
 const PendingUser = require("../models/pendingUser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const transporter = require("../config/nodemailer");
 const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const Joi = require("joi");
+const sendOTPEmail = require("../config/emailService");
 
 const passwordSchema = Joi.string()
   .min(8)
@@ -141,10 +141,6 @@ const registerController = async (req, res) => {
       });
     }
 
-    transporter.verify((err, success) => {
-  if (err) console.error("❌", err);
-  else console.log("✅ Server is ready to send emails");
-});
     const { fullName, email, password } = req.body;
 
     const userExist = await User.findOne({ email });
@@ -182,29 +178,7 @@ const registerController = async (req, res) => {
       await pendingUser.save();
     }
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Your Resumify OTP",
-
-      text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
-
-      html: `
-        <div>
-          <h2>Resumify OTP Verification</h2>
-
-          <p>Your OTP is:</p>
-
-          <h1>${otp}</h1>
-
-          <p>This OTP will expire in 5 minutes.</p>
-
-          <p>
-            If you did not request this OTP, please ignore this email.
-          </p>
-        </div>
-      `,
-    });
+    await sendOTPEmail(email, otp);
 
     return res.status(201).json({
       success: true,
@@ -249,30 +223,7 @@ const resendRegisterOTPController = async (req, res) => {
     pendingUser.otpExpiresAt = otpExpiresAt;
     await pendingUser.save();
 
-    // Send OTP email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Your Resumify OTP",
-
-      text: `Your OTP is ${otp}. It will expire in 5 minutes.`,
-
-      html: `
-        <div>
-          <h2>Resumify OTP Verification</h2>
-
-          <p>Your OTP is:</p>
-
-          <h1>${otp}</h1>
-
-          <p>This OTP will expire in 5 minutes.</p>
-
-          <p>
-            If you did not request this OTP, please ignore this email.
-          </p>
-        </div>
-      `,
-    });
+    await sendOTPEmail(email, otp);
 
     return res.status(200).json({
       message: "A new OTP has been sent to your email.",
@@ -392,21 +343,7 @@ const forgotPasswordController = async (req, res) => {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: "Your Resumify OTP",
-      text: `Your  Reset OTP is ${otp}. It will expire in 5 minutes`,
-      html: `
-    <div>
-      <h2>Resumify OTP Verification</h2>
-      <p>Your Reset OTP is:</p>
-      <h1>${otp}</h1>
-      <p>This OTP will expire in 5 minutes.</p>
-      <p>If you did not request this OTP, please ignore this email.</p>
-    </div>
-  `,
-    });
+    await sendOTPEmail(email, otp);
     user.otp.code = otp;
     user.otp.expiresAt = new Date(Date.now() + 5 * 60 * 1000);
 
